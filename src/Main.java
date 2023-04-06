@@ -1,7 +1,13 @@
 import Transport.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args){
+
+        List<Transport <?>> transportList = new ArrayList<>();
 
         for (int i =1; i<=4;i++){
             DriverB driverB = new DriverB("категории B  № " + i,
@@ -14,7 +20,8 @@ public class Main {
                     driverB, BodyType.COUPE,
                     Type.CAR,
                     100,
-                    100
+                    100,
+                    new ArrayList<Mechanic>()
             );
             DriverC driverC = new DriverC("категории С  № " + i,
                     true,
@@ -27,7 +34,8 @@ public class Main {
                     LoadCapacity.getValue(11.0),
                     Type.CAR,
                     100,
-                    100
+                    100,
+                    new ArrayList<Mechanic>()
             );
             DriverD driverD = new DriverD("категории D  № " + i,
                     true,
@@ -41,12 +49,27 @@ public class Main {
                     Size.getValue(26),
                     Type.BUS,
                     100,
-                    100
+                    100,
+                    new ArrayList<Mechanic>()
                     );
+            transportList.add(auto);
+            transportList.add(truck);
+            transportList.add(bus);
+
 //            printInfo(auto);
 //            printInfo(bus);
 //            printInfo(truck);
+
         }
+        System.out.println(transportList);
+        ArrayList<Mechanic> autoMechanics = new ArrayList<>(Arrays.asList(new Mechanic("Сергей Ковалев", "Strela"),
+                new Mechanic("Василий Леонов", "Союз"),
+                new Mechanic("Василий Леонов", "Союз")));
+
+        ArrayList<Mechanic> busMechanics = new ArrayList<>(Arrays.asList(new Mechanic("Сергей Ковалев", "Strela"),
+                new Mechanic("Василий Леонов", "Союз"),
+                new Mechanic("Василий Леонов", "Союз")));
+
         Auto mercedes = new Auto("Mercedes",
                 "cla 200",
                 2.0,
@@ -54,13 +77,26 @@ public class Main {
                 BodyType.SEDAN,
                 Type.CAR,
                 11,
-                11);
+                11,
+                autoMechanics
+                );
+
+        Mechanic gusev = new Mechanic("Гусев Матвей", "Moll");
+        mercedes.addMechanic(gusev);
+        System.out.println(mercedes.getMechanics());
+        System.out.println(mercedes.getMechanicName(0));
+        System.out.println(mercedes.getDriverName());
+        System.out.println();
+        mercedes.getMechanicsAndDriver();
+
+
+
 //        Auto audi = new Auto("audi", "a8", 2.0, new DriverB("Alex", true, 7), null, Type.CAR);
-        mercedes.turnOnEngine(mercedes);
-        System.out.println(mercedes.getGasTankBar());
-        mercedes.startMove();
-        mercedes.startMove();
-        mercedes.startMove();
+//        mercedes.turnOnEngine(mercedes);
+//        System.out.println(mercedes.getGasTankBar());
+//        mercedes.startMove();
+//        mercedes.startMove();
+//        mercedes.startMove();
 
         try {
             mercedes.turnOnEngine(mercedes);
@@ -72,15 +108,19 @@ public class Main {
 
 //        mercedes.addGas(100);
 //        System.out.println(mercedes.getGasTankBar());
-        mercedes.passDiagnostic();
-
+//        mercedes.passDiagnostic();
 
 //        System.out.println(mercedes.getBodyType());
 //        mercedes.printType();
 //        System.out.println(audi.getBodyType());
 //        audi.printType();
 //
-          Truck scania = new Truck("Scania", "250", 4,new DriverC("Denis", true, 10), LoadCapacity.getValue(null), Type.TRUCK,100,100);
+          Truck scania = new Truck("Scania",
+                  "250", 4,
+                  new DriverC("Denis", true, 10), LoadCapacity.getValue(null),
+                  Type.TRUCK,100,
+                  100,
+                  new ArrayList<Mechanic>());
 
 //          scania.printType();
           Bus ikarus = new Bus("Ikarus",
@@ -89,7 +129,9 @@ public class Main {
                   new DriverD("Max", true, 12), Size.getValue(null),
                   Type.BUS,
                   150,
-                  150);
+                  150,
+                  new ArrayList<Mechanic>());
+
 //          ikarus.turnOnEngine(ikarus);
 //          ikarus.setOilTankBar(200);
 //          System.out.println(ikarus.getOilTankBar());
@@ -100,10 +142,6 @@ public class Main {
         }
 
 //          ikarus.printType();
-
-
-
-
 
 
     }
