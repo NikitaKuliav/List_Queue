@@ -1,5 +1,8 @@
 package Transport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Truck extends Transport<DriverC> implements Diagnosticable {
     private LoadCapacity loadCapacity;
     private Type type;
@@ -10,8 +13,9 @@ public class Truck extends Transport<DriverC> implements Diagnosticable {
                  LoadCapacity loadCapacity,
                  Type type,
                  int gasTankBar,
-                 int oilTankBar) {
-        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
+                 int oilTankBar,
+                 ArrayList<Mechanic> mechanics) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar, mechanics);
         setLoadCapacity(loadCapacity);
     }
 

@@ -1,5 +1,7 @@
 package Transport;
 
+import java.util.ArrayList;
+
 public class Auto extends Transport<DriverB> implements Diagnosticable {
     private BodyType bodyType;
     private Type type;
@@ -10,8 +12,9 @@ public class Auto extends Transport<DriverB> implements Diagnosticable {
                 BodyType bodyType,
                 Type type,
                 int gasTankBar,
-                int oilTankBar) {
-        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
+                int oilTankBar,
+                ArrayList<Mechanic> mechanics) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar, mechanics);
         setBodyType(bodyType);
     }
 

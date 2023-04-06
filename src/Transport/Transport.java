@@ -1,5 +1,9 @@
 package Transport;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
@@ -7,13 +11,15 @@ public abstract class Transport<T extends Driver> implements Competing {
     private T driver;
     private int gasTankBar;
     private int oilTankBar;
+    private List<Mechanic> mechanics;
 
     public Transport(String brand,
                      String model,
                      double engineVolume,
                      T driver,
                      int gasTankBar,
-                     int oilTankBar) {
+                     int oilTankBar,
+                     ArrayList<Mechanic> mechanics) {
         if (brand == null || brand.equals("")) {
             brand = "default";
         }
@@ -26,6 +32,7 @@ public abstract class Transport<T extends Driver> implements Competing {
         setDriver(driver);
         setGasTankBar(gasTankBar);
         setOilTankBar(oilTankBar);
+        this.mechanics = mechanics;
 
     }
 
@@ -40,6 +47,34 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public double getEngineVolume() {
         return engineVolume;
+    }
+
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+    public String getMechanicName(int index) {
+        Mechanic mechanic = mechanics.get(index);
+
+        return mechanic.getNameSurname();
+    }
+    public String getDriverName(){
+        return driver.getName();
+    }
+    public void getMechanicsAndDriver(){
+        System.out.println("Список механиков: " + getMechanics());
+        System.out.println("Имя водителя: " + getDriverName());
+
+    }
+    public String getMechanicFirm(int index) {
+        Mechanic mechanic = mechanics.get(index);
+        return mechanic.getFirm();
+    }
+    public void addMechanic(Mechanic mechanic) {
+        mechanics.add(mechanic);
+    }
+
+    public void setMechanics(List<Mechanic> mechanics) {
+        this.mechanics = mechanics;
     }
 
     public void setEngineVolume(double engineVolume) {
@@ -106,15 +141,17 @@ public abstract class Transport<T extends Driver> implements Competing {
 
     public void turnOnEngine(Transport object) throws EmptyGasTankException, NoOilException {
 
-            if (object.getGasTankBar() > 0 && object.getOilTankBar() > 0) {
-                System.out.println("Двигатель заведён");
-            } else if (object.getGasTankBar() <= 0) {
-                throw new EmptyGasTankException("Нет топлива");
-            } else {
-                throw new NoOilException("Недостаточно масла");
-            }
-
+        if (object.getGasTankBar() > 0 && object.getOilTankBar() > 0) {
+            System.out.println("Двигатель заведён");
+        } else if (object.getGasTankBar() <= 0) {
+            throw new EmptyGasTankException("Нет топлива");
+        } else {
+            throw new NoOilException("Недостаточно масла");
+        }
     }
+
+
+
 
     @Override
     public String toString() {

@@ -1,5 +1,6 @@
 package Transport;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Bus extends Transport<DriverD> implements Diagnosticable {
@@ -13,8 +14,9 @@ public class Bus extends Transport<DriverD> implements Diagnosticable {
                Size size,
                Type type,
                int gasTankBar,
-               int oilTankBar) {
-        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
+               int oilTankBar,
+               ArrayList<Mechanic> mechanics) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar, mechanics);
         setSize(size);
     }
 
