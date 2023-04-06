@@ -140,6 +140,13 @@ public class Main {
         } catch (DiagnosticNotAllowedException e) {
             e.printStackTrace();
         }
+        ServiceStation serviceStation = new ServiceStation();
+        serviceStation.addTransport(mercedes);
+        serviceStation.addTransport(scania);
+        serviceStation.addTransport(ikarus);
+        serviceStation.doMaintenance();
+
+
 
 //          ikarus.printType();
 
